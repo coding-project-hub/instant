@@ -14,20 +14,21 @@ let container3 = document.getElementsByClassName("container-3")[0];
 
 shopCard.forEach(card => {
     card.addEventListener("click", () => {
-    container1.style.display = "none";
-    container3.style.display = "block";
-    // container3.innerHTML= window.location.href="container-3.html";
+        
+        container1.style.display = "none";
+        container2.style.display = "none";
 
-     // Load the HTML fragment into container-3
+        // show container-3 using CSS class
+        container3.classList.add("active");
+
         fetch("container-3.html")
-            .then(response => response.text())
+            .then(res => res.text())
             .then(data => {
-                container3.classList.add("active");
                 container3.innerHTML = data;
             });
-          
- });
+    });
 });
+
 
 
 
