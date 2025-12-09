@@ -1,33 +1,32 @@
-document.addEventListener("DOMContentLoaded", () => {
 
-    let viewAllShop = document.getElementById("view-all-shopss");
-    let container1 = document.querySelector(".container-1");
-    let container2 = document.querySelector(".container-2");
-    let container3 = document.querySelector(".container-3");
+// Container-2
+let viewAllShop = document.getElementById("view-all-shopss");
+let container1 = document.getElementsByClassName("container-1")[0];
+let container2 = document.getElementsByClassName("container-2")[0];
 
-    viewAllShop.addEventListener("click", () => {
-        container1.style.display = "none";
-        container2.style.display = "block";
-        container3.style.display = "none";
-    });
+viewAllShop.addEventListener("click", () => {
+    container1.style.display = "none";
+    container2.style.display = "block";
+});
 
-    document.querySelectorAll(".shop-card").forEach(card => {
-        card.addEventListener("click", () => {
+let shopCard = document.querySelectorAll(".shop-card");
+let container3 = document.getElementsByClassName("container-3")[0];
 
-            container1.style.display = "none";
-            container2.style.display = "none";
-            container3.style.display = "block";
+shopCard.forEach(card => {
+    card.addEventListener("click", () => {
+    container1.style.display = "none";
+    container3.style.display = "block";
+    // container3.innerHTML= window.location.href="container-3.html";
 
-            fetch("container-3.html")  // update path if needed
-                .then(res => {
-                    if (!res.ok) throw new Error("404 NOT FOUND");
-                    return res.text();
-                })
-                .then(html => container3.innerHTML = html)
-                .catch(err => console.log("Error loading container-3:", err));
-        });
-    });
-
+     // Load the HTML fragment into container-3
+        fetch("container-3.html")
+            .then(response => response.text())
+            .then(data => {
+                container3.classList.add("active");
+                container3.innerHTML = data;
+            });
+          
+ });
 });
 
 
