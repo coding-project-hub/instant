@@ -464,7 +464,9 @@ body {
   margin-top: 10px;
   font-weight: 700;
 }
-
+.hr-down{
+    margin-top: 5%;
+}
 /* ===========================
    OFFERS SECTION
 =========================== */
