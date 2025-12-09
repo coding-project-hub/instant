@@ -14,21 +14,38 @@ let container3 = document.getElementsByClassName("container-3")[0];
 
 shopCard.forEach(card => {
     card.addEventListener("click", () => {
-        
-        container1.style.display = "none";
-        container2.style.display = "none";
 
-        // show container-3 using CSS class
-        container3.classList.add("active");
+        // Push page state so BACK button works
+        history.pushState({ page: "container3" }, "", "#shop");
+
+        container1.style.display = "none";
+        container3.style.display = "block";
 
         fetch("container-3.html")
             .then(res => res.text())
             .then(data => {
                 container3.innerHTML = data;
+
+                // Back button inside the UI
+                let backBtn = container3.querySelector(".back-btn");
+                backBtn.addEventListener("click", goBack);
             });
     });
 });
 
+
+window.addEventListener("popstate", (event) => {
+    goBack();
+});
+
+
+function goBack() {
+    container3.style.display = "none";
+    container1.style.display = "block";
+
+    // Clean the URL
+    history.replaceState(null, "", "/");
+}
 
 
 
