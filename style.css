@@ -773,9 +773,13 @@ body {
 
 /* contain-3 */
 
-.container-3{
-    display: none;
+.container-3 {
+   display: none;
 }
+.container-3.active {
+   display: block;
+}
+
 
 /* Shops Header */
 .shops-header h2 {
