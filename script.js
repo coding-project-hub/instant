@@ -1,32 +1,35 @@
+document.addEventListener("DOMContentLoaded", () => {
 
-// Container-2
-let viewAllShop = document.getElementById("view-all-shopss");
-let container1 = document.getElementsByClassName("container-1")[0];
-let container2 = document.getElementsByClassName("container-2")[0];
+    let viewAllShop = document.getElementById("view-all-shopss");
+    let container1 = document.querySelector(".container-1");
+    let container2 = document.querySelector(".container-2");
+    let container3 = document.querySelector(".container-3");
 
-viewAllShop.addEventListener("click", () => {
-    container1.style.display = "none";
-    container2.style.display = "block";
+    viewAllShop.addEventListener("click", () => {
+        container1.style.display = "none";
+        container2.style.display = "block";
+        container3.style.display = "none";
+    });
+
+    document.querySelectorAll(".shop-card").forEach(card => {
+        card.addEventListener("click", () => {
+
+            container1.style.display = "none";
+            container2.style.display = "none";
+            container3.style.display = "block";
+
+            fetch("container-3.html")  // update path if needed
+                .then(res => {
+                    if (!res.ok) throw new Error("404 NOT FOUND");
+                    return res.text();
+                })
+                .then(html => container3.innerHTML = html)
+                .catch(err => console.log("Error loading container-3:", err));
+        });
+    });
+
 });
 
-let shopCard = document.querySelectorAll(".shop-card");
-let container3 = document.getElementsByClassName("container-3")[0];
-
-shopCard.forEach(card => {
-    card.addEventListener("click", () => {
-    container1.style.display = "none";
-    container3.style.display = "block";
-    // container3.innerHTML= window.location.href="container-3.html";
-
-     // Load the HTML fragment into container-3
-        fetch("container-3.html")
-            .then(response => response.text())
-            .then(data => {
-                container3.innerHTML = data;
-            });
-            
- });
-});
 
 
 
