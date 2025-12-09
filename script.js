@@ -32,7 +32,6 @@ shopCard.forEach(card => {
 
 
 
-
 /* -----------------------------
   script.js — Full e-commerce logic
   - Loads Firebase (compat) dynamically
